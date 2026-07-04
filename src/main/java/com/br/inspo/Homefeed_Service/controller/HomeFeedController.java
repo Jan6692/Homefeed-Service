@@ -1,6 +1,6 @@
 package com.br.inspo.Homefeed_Service.controller;
 
-import com.br.inspo.Homefeed_Service.modules.FeedModule;
+import com.br.inspo.Homefeed_Service.module.FeedModule;
 import com.br.inspo.Homefeed_Service.service.HomeFeedService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

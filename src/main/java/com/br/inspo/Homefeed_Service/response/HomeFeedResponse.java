@@ -1,6 +1,6 @@
 package com.br.inspo.Homefeed_Service.response;
 
-import com.br.inspo.Homefeed_Service.modules.FeedModule;
+import com.br.inspo.Homefeed_Service.module.FeedModule;
 import lombok.Getter;
 
 import java.util.List;

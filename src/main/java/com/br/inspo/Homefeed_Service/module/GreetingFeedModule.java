@@ -1,4 +1,4 @@
-package com.br.inspo.Homefeed_Service.modules;
+package com.br.inspo.Homefeed_Service.module;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

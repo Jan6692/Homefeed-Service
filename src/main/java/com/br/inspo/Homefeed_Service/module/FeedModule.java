@@ -1,4 +1,4 @@
-package com.br.inspo.Homefeed_Service.modules;
+package com.br.inspo.Homefeed_Service.module;
 
 public interface FeedModule {
     String getType();

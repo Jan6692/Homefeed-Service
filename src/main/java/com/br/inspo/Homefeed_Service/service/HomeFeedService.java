@@ -1,9 +1,9 @@
 package com.br.inspo.Homefeed_Service.service;
 
-import com.br.inspo.Homefeed_Service.modules.FeedModule;
-import com.br.inspo.Homefeed_Service.modules.GreetingFeedModule;
-import com.br.inspo.Homefeed_Service.modules.ProductTeaserModule;
-import com.br.inspo.Homefeed_Service.modules.SaleBannerModule;
+import com.br.inspo.Homefeed_Service.module.FeedModule;
+import com.br.inspo.Homefeed_Service.module.GreetingFeedModule;
+import com.br.inspo.Homefeed_Service.module.ProductTeaserModule;
+import com.br.inspo.Homefeed_Service.module.SaleBannerModule;
 import com.br.inspo.Homefeed_Service.response.HomeFeedResponse;
 import org.springframework.stereotype.Service;
 
