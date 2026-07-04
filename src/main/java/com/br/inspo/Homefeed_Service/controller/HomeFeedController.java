@@ -2,6 +2,7 @@ package com.br.inspo.Homefeed_Service.controller;
 
 import com.br.inspo.Homefeed_Service.module.FeedModule;
 import com.br.inspo.Homefeed_Service.service.HomeFeedService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +18,8 @@ import java.util.List;
 @RequestMapping("/endpoints/homefeed")
 public class HomeFeedController {
 
-    private final HomeFeedService homeFeedService;
-
-    public HomeFeedController(HomeFeedService homeFeedService) {
-        this.homeFeedService = homeFeedService;
-    }
+    @Autowired
+    private HomeFeedService homeFeedService;
 
     /**
      * Returns the homefeed for a specific user given by userId via parameters.
