@@ -1,4 +1,4 @@
-package entity;
+package com.br.inspo.Homefeed_Service.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
