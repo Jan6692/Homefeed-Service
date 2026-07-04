@@ -15,5 +15,4 @@ public class ProductTeaserModule implements FeedModule {
     @NonNull
     @JsonProperty("price")
     private double price;
-
 }

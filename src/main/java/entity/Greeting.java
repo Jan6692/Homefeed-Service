@@ -1,7 +1,9 @@
 package entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "greeting")
 public class Greeting {
