@@ -1,6 +1,7 @@
 package com.br.inspo.Homefeed_Service.service;
 
 import com.br.inspo.Homefeed_Service.entity.Greeting;
+import com.br.inspo.Homefeed_Service.entity.Product;
 import com.br.inspo.Homefeed_Service.entity.SaleBanner;
 import com.br.inspo.Homefeed_Service.exception.LanguageNotFoundException;
 import com.br.inspo.Homefeed_Service.exception.UserNotFoundException;
@@ -39,6 +40,9 @@ public class HomeFeedService {
     @Autowired
     private SaleBannerRepository saleBannerRepository;
 
+    @Autowired
+    private PreferencePredictionService preferencePredictionService;
+
     Logger logger = LoggerFactory.getLogger(HomeFeedService.class);
 
 
@@ -53,14 +57,7 @@ public class HomeFeedService {
         User user = retrieveUser(userId);
         modules.add(buildGreetingFeedModule(user));
         modules.add(buildSaleBannerModule(user));
-        // find sale banner for user language in database
-
-
-
-        // product
-
-        modules.add(new ProductTeaserModule("breuninger.de/products/pictures/shirt", 29.99));
-        modules.add(new SaleBannerModule( "SALE!", "Jetzt shoppen", "breuninger.de/ad/pictures/sale"));
+        modules.add(buildProductTeaserModule(user));
         HomeFeedResponse homeFeedResponse = new HomeFeedResponse(modules);
         return homeFeedResponse;
     }
@@ -130,5 +127,22 @@ public class HomeFeedService {
         );
         logger.info("SaleBannerModule built successfully for user with id: {}", user.getId());
         return saleBannerModule;
+    }
+
+    /**
+     * Finds product to show in advertisement based on user preferences and builds ProductTeaserModule.
+     *
+     * @param user user for which the ProductTeaserModule shall be built
+     * @return ProductTeaserModule for given user
+     * @throws LanguageNotFoundException
+     */
+    private ProductTeaserModule buildProductTeaserModule(User user) throws LanguageNotFoundException {
+        Product product = preferencePredictionService.getProductPreference(user);
+        ProductTeaserModule productTeaserModule = new ProductTeaserModule(
+                product.getPictureUrl(),
+                product.getPrice()
+        );
+        logger.info("ProductTeaserModule built successfully for user with id: {}", user.getId());
+        return productTeaserModule;
     }
 }

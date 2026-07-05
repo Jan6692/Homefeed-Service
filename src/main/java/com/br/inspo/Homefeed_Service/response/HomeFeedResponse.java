@@ -1,13 +1,17 @@
 package com.br.inspo.Homefeed_Service.response;
 
 import com.br.inspo.Homefeed_Service.module.FeedModule;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NonNull;
 
 import java.util.List;
 
-@Getter
+@Data
 public class HomeFeedResponse {
 
+    @NonNull
+    @JsonProperty("feedModules")
     private final List<FeedModule> feedModules;
 
     public HomeFeedResponse(List<FeedModule> modules) {
