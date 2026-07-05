@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS app_user (
     language  VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS sales_banner (
+CREATE TABLE IF NOT EXISTS sale_banner (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     language    VARCHAR(255) NOT NULL,
     headline    VARCHAR(500) NOT NULL,

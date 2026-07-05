@@ -8,10 +8,7 @@ import lombok.NonNull;
 public class SaleBannerModule implements FeedModule {
 
     @JsonProperty("type")
-    private final String type = "sales_banner";
-    @NonNull
-    @JsonProperty("language")
-    private String language;
+    private final String type = "sale_banner";
     @NonNull
     @JsonProperty("headline")
     private String headline;

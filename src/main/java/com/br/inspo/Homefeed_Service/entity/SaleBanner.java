@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "sales_banner")
-public class SalesBanner {
+@Table(name = "sale_banner")
+public class SaleBanner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

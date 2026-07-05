@@ -4,17 +4,17 @@
 -- are set (see application.properties).
 
 DELETE FROM greeting;
-DELETE FROM sales_banner;
+DELETE FROM sale_banner;
 DELETE FROM product;
 DELETE FROM app_user;
 
 -- Greeting -------------------------------------------------------------
 INSERT INTO greeting (id, language, text) VALUES
-                                              (1, 'en', 'Hello!'),
-                                              (2, 'de', 'Hallo!'),
-                                              (3, 'fr', 'Bonjour!'),
-                                              (4, 'es', '¡Hola!'),
-                                              (5, 'it', 'Ciao!');
+                                              (1, 'en', 'Hello %s!'),
+                                              (2, 'de', 'Hallo %s!'),
+                                              (3, 'fr', 'Bonjour %s!'),
+                                              (4, 'es', '¡Hola %s!'),
+                                              (5, 'it', 'Ciao %s!');
 
 -- App user ---------------------------------------------------------------
 INSERT INTO app_user (id, name, last_name, language) VALUES
@@ -24,8 +24,8 @@ INSERT INTO app_user (id, name, last_name, language) VALUES
                                                          (4, 'Carlos', 'García', 'es'),
                                                          (5, 'Giulia', 'Rossi', 'it');
 
--- Sales banner -----------------------------------------------------------
-INSERT INTO sales_banner (id, language, headline, cta_label, picture_url) VALUES
+-- Sale banner -----------------------------------------------------------
+INSERT INTO sale_banner (id, language, headline, cta_label, picture_url) VALUES
                                                                               (1, 'en', 'Summer Sale - Up to 50% Off',   'Shop Now',     'https://example.com/banners/en-summer.jpg'),
                                                                               (2, 'de', 'Sommerschlussverkauf - Bis zu 50% Rabatt', 'Jetzt einkaufen', 'https://example.com/banners/de-summer.jpg'),
                                                                               (3, 'fr', 'Soldes d''été - Jusqu''à 50% de réduction', 'Acheter maintenant', 'https://example.com/banners/fr-summer.jpg'),

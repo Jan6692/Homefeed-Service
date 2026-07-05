@@ -1,13 +1,13 @@
 package com.br.inspo.Homefeed_Service.repository;
 
-import com.br.inspo.Homefeed_Service.entity.SalesBanner;
+import com.br.inspo.Homefeed_Service.entity.SaleBanner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface SalesBannerRepository extends JpaRepository<SalesBanner, Long> {
+public interface SaleBannerRepository extends JpaRepository<SaleBanner, Long> {
 
-    List<SalesBanner> findByLanguage(String language);
+    List<SaleBanner> findByLanguage(String language);
 }
