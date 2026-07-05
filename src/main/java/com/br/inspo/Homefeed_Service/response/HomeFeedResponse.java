@@ -14,6 +14,8 @@ public class HomeFeedResponse {
     @JsonProperty("feedModules")
     private final List<FeedModule> feedModules;
 
+    //TODO: More data can be added here in json object for feed rendering
+
     public HomeFeedResponse(List<FeedModule> modules) {
         this.feedModules = modules;
     }
