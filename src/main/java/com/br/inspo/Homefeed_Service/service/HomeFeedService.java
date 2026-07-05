@@ -52,7 +52,7 @@ public class HomeFeedService {
         List<FeedModule> modules = new ArrayList<>();
         User user = retrieveUser(userId);
         modules.add(buildGreetingFeedModule(user));
-
+        modules.add(buildSaleBannerModule(user));
         // find sale banner for user language in database
 
 
@@ -84,7 +84,7 @@ public class HomeFeedService {
     }
 
     /**
-     * Finds the correct greeting for the given user and builds a GreetingFeedModule for it.
+     * Finds the correct greeting for the given user and builds a GreetingFeedModule.
      *
      * @param user user for which the GreetingFeedModule shall be built
      * @return GreetingFeedModule for given user
@@ -108,5 +108,27 @@ public class HomeFeedService {
         return greetingFeedModule;
     }
 
-
+    /**
+     * Finds the correct SaleBanner for the given user and builds a SaleBannerModule.
+     *
+     * @param user user for which the SaleBannerModule shall be built
+     * @return SaleBannerModule for given user
+     * @throws LanguageNotFoundException
+     */
+    private SaleBannerModule buildSaleBannerModule(User user) throws LanguageNotFoundException {
+        List<SaleBanner> saleBanners = saleBannerRepository.findByLanguage(user.getLanguage());
+        if (saleBanners.isEmpty()) {
+            String errorMessage = String.format(Constants.USER_LANGUAGE_NOT_FOUND_FOR_MODULE, user.getLanguage(), "SaleBanner");
+            logger.error(errorMessage);
+            throw new LanguageNotFoundException(errorMessage);
+        }
+        SaleBanner saleBanner = saleBanners.getFirst();
+        SaleBannerModule saleBannerModule = new SaleBannerModule(
+                saleBanner.getHeadline(),
+                saleBanner.getCtaLabel(),
+                saleBanner.getPictureUrl()
+        );
+        logger.info("SaleBannerModule built successfully for user with id: {}", user.getId());
+        return saleBannerModule;
+    }
 }
