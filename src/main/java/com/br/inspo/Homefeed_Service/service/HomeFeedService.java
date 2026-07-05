@@ -65,17 +65,31 @@ public class HomeFeedService {
         return homeFeedResponse;
     }
 
+    /**
+     * Retrieves the user entity from the database for the given user id.
+     *
+     * @param userId id for which the user should be loaded from database
+     * @return User entity for given user id
+     * @throws UserNotFoundException
+     */
     private User retrieveUser(Long userId) throws UserNotFoundException {
-        // find user in database
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isEmpty()) {
             String errorMessage = String.format(Constants.USER_NOT_FOUND_MESSAGE, userId);
             logger.error(errorMessage);
             throw new UserNotFoundException(errorMessage);
         }
+        logger.info("User retrieved successfully for userId: {}", userId);
         return optionalUser.get();
     }
 
+    /**
+     * Finds the correct greeting for the given user and builds a GreetingFeedModule for it.
+     *
+     * @param user user for which the GreetingFeedModule shall be built
+     * @return GreetingFeedModule for given user
+     * @throws LanguageNotFoundException
+     */
     private GreetingFeedModule buildGreetingFeedModule(User user) throws LanguageNotFoundException {
         // find greeting for user language in database & build GreetingFeedModule
         List<Greeting> greetings = greetingRepository.findByLanguage(user.getLanguage());
@@ -90,6 +104,7 @@ public class HomeFeedService {
         GreetingFeedModule greetingFeedModule = new GreetingFeedModule(
                 String.format(greeting.getText(), user.getName())
         );
+        logger.info("GreetingFeedModule built successfully for user with id: {}", user.getId());
         return greetingFeedModule;
     }
 
