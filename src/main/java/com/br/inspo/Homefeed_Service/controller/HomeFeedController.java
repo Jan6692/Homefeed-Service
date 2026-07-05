@@ -1,6 +1,8 @@
 package com.br.inspo.Homefeed_Service.controller;
 
-import com.br.inspo.Homefeed_Service.module.FeedModule;
+import com.br.inspo.Homefeed_Service.exception.LanguageNotFoundException;
+import com.br.inspo.Homefeed_Service.exception.UserNotFoundException;
+import com.br.inspo.Homefeed_Service.response.HomeFeedResponse;
 import com.br.inspo.Homefeed_Service.service.HomeFeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,7 @@ public class HomeFeedController {
      * @return homefeed for the given user
      */
     @GetMapping
-    public ResponseEntity<List<FeedModule>> getHomeFeed(@RequestParam(name = "userId", required = true) String userId){
+    public ResponseEntity<HomeFeedResponse> getHomeFeed(@RequestParam(name = "userId", required = true) Long userId) throws UserNotFoundException, LanguageNotFoundException {
         return ResponseEntity.ok(homeFeedService.getHomeFeedResponse(userId));
     }
 
