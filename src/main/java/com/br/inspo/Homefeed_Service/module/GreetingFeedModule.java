@@ -10,9 +10,6 @@ public class GreetingFeedModule implements FeedModule {
     @JsonProperty("type")
     private final String type = "greeting";
     @NonNull
-    @JsonProperty("language")
-    private String language;
-    @NonNull
     @JsonProperty("text")
     private String text;
 
