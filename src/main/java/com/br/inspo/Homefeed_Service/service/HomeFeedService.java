@@ -16,8 +16,7 @@ import com.br.inspo.Homefeed_Service.repository.UserRepository;
 import com.br.inspo.Homefeed_Service.response.HomeFeedResponse;
 import com.br.inspo.Homefeed_Service.entity.User;
 import com.br.inspo.Homefeed_Service.util.Constants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +27,7 @@ import java.util.Optional;
 /**
  * Service which delivers all methods needed to get homefeed related data.
  */
+@Slf4j
 @Service
 public class HomeFeedService {
 
@@ -42,8 +42,6 @@ public class HomeFeedService {
 
     @Autowired
     private PreferencePredictionService preferencePredictionService;
-
-    Logger logger = LoggerFactory.getLogger(HomeFeedService.class);
 
 
     /**
@@ -69,14 +67,14 @@ public class HomeFeedService {
      * @return User entity for given user id
      * @throws UserNotFoundException
      */
-    private User retrieveUser(Long userId) throws UserNotFoundException {
+    public User retrieveUser(Long userId) throws UserNotFoundException {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isEmpty()) {
             String errorMessage = String.format(Constants.USER_NOT_FOUND_MESSAGE, userId);
-            logger.error(errorMessage);
+            log.error(errorMessage);
             throw new UserNotFoundException(errorMessage);
         }
-        logger.info("User retrieved successfully for userId: {}", userId);
+        log.info("User retrieved successfully for userId: {}", userId);
         return optionalUser.get();
     }
 
@@ -87,12 +85,12 @@ public class HomeFeedService {
      * @return GreetingFeedModule for given user
      * @throws LanguageNotFoundException
      */
-    private GreetingFeedModule buildGreetingFeedModule(User user) throws LanguageNotFoundException {
+    public GreetingFeedModule buildGreetingFeedModule(User user) throws LanguageNotFoundException {
         // find greeting for user language in database & build GreetingFeedModule
         List<Greeting> greetings = greetingRepository.findByLanguage(user.getLanguage());
         if (greetings.isEmpty()) {
             String errorMessage = String.format(Constants.USER_LANGUAGE_NOT_FOUND_FOR_MODULE, user.getLanguage(), "Greeting");
-            logger.error(errorMessage);
+            log.error(errorMessage);
             throw new LanguageNotFoundException(errorMessage);
         }
         // TODO: greetings could be added based on time or other conditions - more complexity/personilization
@@ -101,7 +99,7 @@ public class HomeFeedService {
         GreetingFeedModule greetingFeedModule = new GreetingFeedModule(
                 String.format(greeting.getText(), user.getName())
         );
-        logger.info("GreetingFeedModule built successfully for user with id: {}", user.getId());
+        log.info("GreetingFeedModule built successfully for user with id: {}", user.getId());
         return greetingFeedModule;
     }
 
@@ -112,11 +110,11 @@ public class HomeFeedService {
      * @return SaleBannerModule for given user
      * @throws LanguageNotFoundException
      */
-    private SaleBannerModule buildSaleBannerModule(User user) throws LanguageNotFoundException {
+    public SaleBannerModule buildSaleBannerModule(User user) throws LanguageNotFoundException {
         List<SaleBanner> saleBanners = saleBannerRepository.findByLanguage(user.getLanguage());
         if (saleBanners.isEmpty()) {
             String errorMessage = String.format(Constants.USER_LANGUAGE_NOT_FOUND_FOR_MODULE, user.getLanguage(), "SaleBanner");
-            logger.error(errorMessage);
+            log.error(errorMessage);
             throw new LanguageNotFoundException(errorMessage);
         }
         SaleBanner saleBanner = saleBanners.getFirst();
@@ -125,7 +123,7 @@ public class HomeFeedService {
                 saleBanner.getCtaLabel(),
                 saleBanner.getPictureUrl()
         );
-        logger.info("SaleBannerModule built successfully for user with id: {}", user.getId());
+        log.info("SaleBannerModule built successfully for user with id: {}", user.getId());
         return saleBannerModule;
     }
 
@@ -136,13 +134,13 @@ public class HomeFeedService {
      * @return ProductTeaserModule for given user
      * @throws LanguageNotFoundException
      */
-    private ProductTeaserModule buildProductTeaserModule(User user) throws LanguageNotFoundException {
+    public ProductTeaserModule buildProductTeaserModule(User user) throws LanguageNotFoundException {
         Product product = preferencePredictionService.getProductPreference(user);
         ProductTeaserModule productTeaserModule = new ProductTeaserModule(
                 product.getPictureUrl(),
                 product.getPrice()
         );
-        logger.info("ProductTeaserModule built successfully for user with id: {}", user.getId());
+        log.info("ProductTeaserModule built successfully for user with id: {}", user.getId());
         return productTeaserModule;
     }
 }
