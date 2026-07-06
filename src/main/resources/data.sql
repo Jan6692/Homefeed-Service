@@ -22,7 +22,8 @@ INSERT INTO app_user (id, name, last_name, language) VALUES
                                                          (2, 'Anna', 'Müller', 'de'),
                                                          (3, 'Marie', 'Dubois', 'fr'),
                                                          (4, 'Carlos', 'García', 'es'),
-                                                         (5, 'Giulia', 'Rossi', 'it');
+                                                         (5, 'Giulia', 'Rossi', 'it'),
+                                                         (6, 'Wladimir', 'Iwanov', 'ru');
 
 -- Sale banner -----------------------------------------------------------
 INSERT INTO sale_banner (id, language, headline, cta_label, picture_url) VALUES
