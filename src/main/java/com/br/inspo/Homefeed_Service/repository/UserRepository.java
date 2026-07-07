@@ -6,11 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository interface for access of User database.
+ */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> findByLanguage(String language);
+    List<User> findByLanguage(String language); // sample custom query
 
-    List<User> findByLastName(String lastName);
+    List<User> findByLastName(String lastName); // sample custom query
 
 }

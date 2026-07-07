@@ -7,6 +7,9 @@ import lombok.NonNull;
 
 import java.util.List;
 
+/**
+ * This class represents the response delivered from HomeFeed endpoint to UI for the HomeFeed building.
+ */
 @Data
 public class HomeFeedResponse {
 

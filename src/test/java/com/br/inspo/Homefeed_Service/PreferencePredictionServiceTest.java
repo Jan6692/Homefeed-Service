@@ -14,7 +14,7 @@ public class PreferencePredictionServiceTest {
 
     @Test
     public void testGetProductPreference() {
-        //TODO: Add JUnit here like in HomeFeedServiceTest
+        //TODO: Add JUnits here like in HomeFeedServiceTest
     }
 
 }

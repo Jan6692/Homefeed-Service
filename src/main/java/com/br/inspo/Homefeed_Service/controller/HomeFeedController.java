@@ -34,4 +34,7 @@ public class HomeFeedController {
         return ResponseEntity.ok(homeFeedService.getHomeFeedResponse(userId));
     }
 
+    //TODO: endpoints for Homefeed Modules can be added here if there are use cases in which UI only needs single
+    // modules e.g. user wants new product suggestion - also other Homefeed related endpoints may be possible here
+
 }

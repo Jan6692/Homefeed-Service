@@ -6,8 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository interface for access of Product database.
+ */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByPriceLessThanEqual(double price);
+    List<Product> findByPriceLessThanEqual(double price); // sample custom query
 }

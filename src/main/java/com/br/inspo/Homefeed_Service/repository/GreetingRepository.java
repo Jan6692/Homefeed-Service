@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository interface for access of Greeting database.
+ */
 @Repository
 public interface GreetingRepository extends JpaRepository<Greeting, Long> {
 

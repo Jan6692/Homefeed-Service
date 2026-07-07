@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Global handler for all exceptions that may happen during usage of HomeFeed API
+ */
 @ControllerAdvice
 public class HomeFeedGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
